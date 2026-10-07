@@ -45,3 +45,8 @@ Structured Meeting Record
      ├── Topics Discussed
      ├── Key Decisions
      └── Action Items
+     
+### FFmpeg
+
+FFmpeg is required for audio duration checking and audio chunking.
+
