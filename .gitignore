@@ -1,0 +1,13 @@
+venv/
+.env
+__pycache__/
+*.pyc
+outputs/
+chunks/
+*.wav
+*.mp3
+*.m4a
+*.mp4
+*.mpeg
+*.mpga
+*.webm
