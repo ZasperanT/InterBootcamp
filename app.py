@@ -213,6 +213,56 @@ if st.session_state.result is not None:
             "No confirmed action items."
         )
 
+    st.header("🔎 Evidence Verification")
+
+    verification = result.get("verification")
+
+    if verification is not None:
+
+        for claim in verification["claims"]:
+
+            if claim["status"] == "supported":
+                status_label = "✅ Supported"
+            elif claim["status"] == "contradicted":
+                status_label = "❌ Contradicted"
+            else:
+                status_label = "⚠️ Uncertain"
+
+            with st.expander(
+                f"{claim['claim_id']} — {status_label}"
+            ):
+
+                st.write(
+                    f"**Status:** {claim['status']}"
+                )
+
+                st.write(
+                    f"**Reason:** {claim['reason']}"
+                )
+
+                st.write("**Evidence:**")
+
+                if claim["evidence"]:
+
+                    for evidence in claim["evidence"]:
+
+                        st.caption(
+                            f"{evidence['segment_id']} "
+                            f"(retrieval score: "
+                            f"{evidence['score']:.3f})"
+                        )
+                        st.write(evidence["text"])
+
+                else:
+                    st.info(
+                        "No supporting evidence was retrieved."
+                    )
+
+    else:
+        st.info(
+            "No verification information is available."
+        )
+
     st.header("📄 Transcripts")
 
 
